@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hypermarket_ecommerce/view/widgets/app_bar_widget.dart';
+import 'package:hypermarket_ecommerce/view/widgets/customers_list_widget.dart';
 import 'package:hypermarket_ecommerce/view/widgets/search_field_widget.dart';
 
 class CustomersPage extends HookWidget {
@@ -25,7 +26,11 @@ class CustomersPage extends HookWidget {
                 SearchFieldWidget(
                   controller: customerSearchController,
                   isCustomer: true,
-                )
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const CustomersListWidget()
               ],
             ),
           ),
