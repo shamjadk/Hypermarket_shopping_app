@@ -6,22 +6,22 @@ import 'dart:convert';
 part 'customer_model.g.dart';
 part 'customer_model.freezed.dart';
 
-Customer customerFromJson(String str) => Customer.fromJson(json.decode(str));
+CustomerModel customerModelFromJson(String str) => CustomerModel.fromJson(json.decode(str));
 
-String customerToJson(Customer data) => json.encode(data.toJson());
+String customerModelToJson(CustomerModel data) => json.encode(data.toJson());
 
 @freezed
-class Customer with _$Customer {
-    const factory Customer({
+class CustomerModel with _$CustomerModel {
+    const factory CustomerModel({
         @JsonKey(name: "error_code")
         required int errorCode,
         @JsonKey(name: "data")
         required List<Datum> data,
         @JsonKey(name: "message")
         required String message,
-    }) = _Customer;
+    }) = _CustomerModel;
 
-    factory Customer.fromJson(Map<String, dynamic> json) => _$CustomerFromJson(json);
+    factory CustomerModel.fromJson(Map<String, dynamic> json) => _$CustomerModelFromJson(json);
 }
 
 @freezed

@@ -6,8 +6,8 @@ part of 'customer_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CustomerImpl _$$CustomerImplFromJson(Map<String, dynamic> json) =>
-    _$CustomerImpl(
+_$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
+    _$CustomerModelImpl(
       errorCode: json['error_code'] as int,
       data: (json['data'] as List<dynamic>)
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))
@@ -15,7 +15,7 @@ _$CustomerImpl _$$CustomerImplFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String,
     );
 
-Map<String, dynamic> _$$CustomerImplToJson(_$CustomerImpl instance) =>
+Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
     <String, dynamic>{
       'error_code': instance.errorCode,
       'data': instance.data,

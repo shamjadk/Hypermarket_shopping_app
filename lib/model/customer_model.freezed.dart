@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Customer _$CustomerFromJson(Map<String, dynamic> json) {
-  return _Customer.fromJson(json);
+CustomerModel _$CustomerModelFromJson(Map<String, dynamic> json) {
+  return _CustomerModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Customer {
+mixin _$CustomerModel {
   @JsonKey(name: "error_code")
   int get errorCode => throw _privateConstructorUsedError;
   @JsonKey(name: "data")
@@ -29,14 +29,15 @@ mixin _$Customer {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CustomerCopyWith<Customer> get copyWith =>
+  $CustomerModelCopyWith<CustomerModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CustomerCopyWith<$Res> {
-  factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
-      _$CustomerCopyWithImpl<$Res, Customer>;
+abstract class $CustomerModelCopyWith<$Res> {
+  factory $CustomerModelCopyWith(
+          CustomerModel value, $Res Function(CustomerModel) then) =
+      _$CustomerModelCopyWithImpl<$Res, CustomerModel>;
   @useResult
   $Res call(
       {@JsonKey(name: "error_code") int errorCode,
@@ -45,9 +46,9 @@ abstract class $CustomerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CustomerCopyWithImpl<$Res, $Val extends Customer>
-    implements $CustomerCopyWith<$Res> {
-  _$CustomerCopyWithImpl(this._value, this._then);
+class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
+    implements $CustomerModelCopyWith<$Res> {
+  _$CustomerModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -79,11 +80,11 @@ class _$CustomerCopyWithImpl<$Res, $Val extends Customer>
 }
 
 /// @nodoc
-abstract class _$$CustomerImplCopyWith<$Res>
-    implements $CustomerCopyWith<$Res> {
-  factory _$$CustomerImplCopyWith(
-          _$CustomerImpl value, $Res Function(_$CustomerImpl) then) =
-      __$$CustomerImplCopyWithImpl<$Res>;
+abstract class _$$CustomerModelImplCopyWith<$Res>
+    implements $CustomerModelCopyWith<$Res> {
+  factory _$$CustomerModelImplCopyWith(
+          _$CustomerModelImpl value, $Res Function(_$CustomerModelImpl) then) =
+      __$$CustomerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -93,11 +94,11 @@ abstract class _$$CustomerImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CustomerImplCopyWithImpl<$Res>
-    extends _$CustomerCopyWithImpl<$Res, _$CustomerImpl>
-    implements _$$CustomerImplCopyWith<$Res> {
-  __$$CustomerImplCopyWithImpl(
-      _$CustomerImpl _value, $Res Function(_$CustomerImpl) _then)
+class __$$CustomerModelImplCopyWithImpl<$Res>
+    extends _$CustomerModelCopyWithImpl<$Res, _$CustomerModelImpl>
+    implements _$$CustomerModelImplCopyWith<$Res> {
+  __$$CustomerModelImplCopyWithImpl(
+      _$CustomerModelImpl _value, $Res Function(_$CustomerModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,7 +108,7 @@ class __$$CustomerImplCopyWithImpl<$Res>
     Object? data = null,
     Object? message = null,
   }) {
-    return _then(_$CustomerImpl(
+    return _then(_$CustomerModelImpl(
       errorCode: null == errorCode
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
@@ -126,15 +127,15 @@ class __$$CustomerImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CustomerImpl implements _Customer {
-  const _$CustomerImpl(
+class _$CustomerModelImpl implements _CustomerModel {
+  const _$CustomerModelImpl(
       {@JsonKey(name: "error_code") required this.errorCode,
       @JsonKey(name: "data") required final List<Datum> data,
       @JsonKey(name: "message") required this.message})
       : _data = data;
 
-  factory _$CustomerImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CustomerImplFromJson(json);
+  factory _$CustomerModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CustomerModelImplFromJson(json);
 
   @override
   @JsonKey(name: "error_code")
@@ -154,14 +155,14 @@ class _$CustomerImpl implements _Customer {
 
   @override
   String toString() {
-    return 'Customer(errorCode: $errorCode, data: $data, message: $message)';
+    return 'CustomerModel(errorCode: $errorCode, data: $data, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CustomerImpl &&
+            other is _$CustomerModelImpl &&
             (identical(other.errorCode, errorCode) ||
                 other.errorCode == errorCode) &&
             const DeepCollectionEquality().equals(other._data, _data) &&
@@ -176,26 +177,26 @@ class _$CustomerImpl implements _Customer {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CustomerImplCopyWith<_$CustomerImpl> get copyWith =>
-      __$$CustomerImplCopyWithImpl<_$CustomerImpl>(this, _$identity);
+  _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
+      __$$CustomerModelImplCopyWithImpl<_$CustomerModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CustomerImplToJson(
+    return _$$CustomerModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _Customer implements Customer {
-  const factory _Customer(
+abstract class _CustomerModel implements CustomerModel {
+  const factory _CustomerModel(
           {@JsonKey(name: "error_code") required final int errorCode,
           @JsonKey(name: "data") required final List<Datum> data,
           @JsonKey(name: "message") required final String message}) =
-      _$CustomerImpl;
+      _$CustomerModelImpl;
 
-  factory _Customer.fromJson(Map<String, dynamic> json) =
-      _$CustomerImpl.fromJson;
+  factory _CustomerModel.fromJson(Map<String, dynamic> json) =
+      _$CustomerModelImpl.fromJson;
 
   @override
   @JsonKey(name: "error_code")
@@ -208,7 +209,7 @@ abstract class _Customer implements Customer {
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$CustomerImplCopyWith<_$CustomerImpl> get copyWith =>
+  _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
