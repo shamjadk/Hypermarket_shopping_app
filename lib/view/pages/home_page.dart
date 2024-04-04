@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         scrolledUnderElevation: 0,
         leadingWidth: 50,
         leading: const Padding(
-          padding: EdgeInsets.only(left: 12),
+          padding: EdgeInsets.only(left: 16),
           child: CircleAvatar(
             backgroundColor: Colors.red,
           ),
@@ -32,48 +32,53 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: const SectionsGridWidget(),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        unselectedItemColor: AppTheme.appThemeColor,
-        selectedItemColor: AppTheme.appThemeColor,
-        selectedFontSize: 12,
-        unselectedFontSize: 10,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: AppTheme.appThemeColor,
-              ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_chart,
-                size: 20,
-                color: AppTheme.appThemeColor,
-              ),
-              label: 'New order'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.cart,
-                size: 20,
-                color: AppTheme.appThemeColor,
-              ),
-              label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.return_icon,
-                size: 20,
-                color: AppTheme.appThemeColor,
-              ),
-              label: 'Return order'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.group_solid,
-                size: 20,
-                color: AppTheme.appThemeColor,
-              ),
-              label: 'Customers'),
-        ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+          unselectedItemColor: AppTheme.appThemeColor,
+          selectedItemColor: AppTheme.appThemeColor,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          elevation: 10,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  color: AppTheme.appThemeColor,
+                ),
+                label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.add_chart,
+                  size: 20,
+                  color: AppTheme.appThemeColor,
+                ),
+                label: 'New order'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  CupertinoIcons.cart,
+                  size: 20,
+                  color: AppTheme.appThemeColor,
+                ),
+                label: 'Cart'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  CupertinoIcons.return_icon,
+                  size: 20,
+                  color: AppTheme.appThemeColor,
+                ),
+                label: 'Return order'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  CupertinoIcons.group_solid,
+                  size: 20,
+                  color: AppTheme.appThemeColor,
+                ),
+                label: 'Customers'),
+          ],
+        ),
       ),
     );
   }
