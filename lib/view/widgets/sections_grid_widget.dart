@@ -1,20 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 
-class SectionsGridWidget extends StatelessWidget {
+class SectionsGridWidget extends HookWidget {
   const SectionsGridWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selectedBottomNavBarIndex = useState<int>(-1);
+
     final iconList = [
-      'assets/icons/ic_customers.png',
-      'assets/icons/ic_product.png',
-      'assets/icons/ic_new_order.png',
-      'assets/icons/ic_return_order.png',
-      'assets/icons/ic_add_payment.png',
-      'assets/icons/ic_todays_order.png',
-      'assets/icons/ic_todays_summary.png',
-      'assets/icons/ic_route.png',
+      CupertinoIcons.group_solid,
+      CupertinoIcons.cube_box,
+      Icons.add_chart,
+      CupertinoIcons.return_icon,
+      Icons.payments_outlined,
+      CupertinoIcons.doc_plaintext,
+      Icons.receipt_long,
+      Icons.route
     ];
     final nameList = [
       'Customers',
@@ -32,30 +36,48 @@ class SectionsGridWidget extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisExtent: 155,
       ),
-      itemBuilder: (context, index) => Container(
-        margin: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: const [
-              BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 3)
-            ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              iconList[index],
-              height: 40,
-              color: AppTheme.appThemeColor,
+      itemBuilder: (context, index) => InkWell(
+        onTap: () {
+          selectedBottomNavBarIndex.value = index;
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Container(
+            decoration: BoxDecoration(
+                color: selectedBottomNavBarIndex.value == index
+                    ? AppTheme.appThemeColor
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black12, blurRadius: 10, spreadRadius: 3)
+                ]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  iconList[index],
+                  size: 35,
+                  color: selectedBottomNavBarIndex.value == index
+                      ? Colors.white
+                      : AppTheme.appThemeColor,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  nameList[index],
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: selectedBottomNavBarIndex.value == index
+                        ? Colors.white
+                        : AppTheme.appThemeColor,
+                  ),
+                )
+              ],
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              nameList[index],
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            )
-          ],
+          ),
         ),
       ),
     );
