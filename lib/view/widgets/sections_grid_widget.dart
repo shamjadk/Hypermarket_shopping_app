@@ -77,7 +77,7 @@ class SectionsGridWidget extends HookWidget {
                     size: 35,
                     color: selectedSectionIndex.value == index
                         ? Colors.white
-                        : AppTheme.appThemeColor,
+                        : Colors.black,
                   ),
                   const SizedBox(
                     height: 8,
