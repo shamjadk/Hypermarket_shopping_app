@@ -23,43 +23,44 @@ class ProductPage extends HookWidget {
       return null;
     }, []);
     return Scaffold(
-      appBar:  PreferredSize(
-        preferredSize: const Size.fromHeight(110),
-        child:Column(children: [
-         const AppBarWidget(
-          title: 'Nesto Hypermarket',
-        ),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(110),
+          child: Column(
+            children: [
+              const AppBarWidget(
+                title: 'Nesto Hypermarket',
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: SearchFieldWidget(
                   controller: productSearchController,
                   isCustomer: false,
-                  onSubmitted: (p0) {},
+                  onChanged: (p0) {},
                 ),
               )
-          
-        ],)
-      ),
-      body:  SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child:Column(
-            children: [
-              const SizedBox(height: 16,),
-              BlocBuilder<ProductApiBloc, ProductApiState>(
-                builder: (context, state) {
-                  if (state.product == null) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return ProductGridWidget(state: state.product!);
-                  }
-                },
-              ),
             ],
-          )
-        ),
+          )),
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 16,
+                ),
+                BlocBuilder<ProductApiBloc, ProductApiState>(
+                  builder: (context, state) {
+                    if (state.product == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return ProductGridWidget(state: state.product!);
+                    }
+                  },
+                ),
+              ],
+            )),
       ),
     );
   }

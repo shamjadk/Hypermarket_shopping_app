@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 class SearchFieldWidget extends StatelessWidget {
   final bool? isCustomer;
   final TextEditingController? controller;
-  final void Function(String)? onSubmitted;
+  final void Function(String)? onChanged;
   const SearchFieldWidget(
       {super.key,
       required this.isCustomer,
-      required this.onSubmitted,
+      required this.onChanged,
       required this.controller});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
       child: TextField(
-        onSubmitted: onSubmitted,
+        onChanged: onChanged,
         controller: controller,
         decoration: InputDecoration(
             prefixIcon: const Icon(

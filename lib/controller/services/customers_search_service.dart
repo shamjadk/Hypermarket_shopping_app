@@ -15,7 +15,7 @@ class CustomerSearchApiService {
         for (var customer in data['data']) {
           datas.add(CustomersModel.fromJson(customer));
         }
-        return data;
+        return datas;
       } else {
         throw Exception('failed');
       }

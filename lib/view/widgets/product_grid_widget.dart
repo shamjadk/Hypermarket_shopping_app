@@ -32,8 +32,11 @@ class ProductGridWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               child: Column(
                 children: [
-                   Center(
-                      child: Image.asset('assets/images/img_kiwi.png',height: 60,)),
+                  Center(
+                      child: Image.asset(
+                    'assets/images/img_kiwi.png',
+                    height: 60,
+                  )),
                   const SizedBox(
                     height: 8,
                   ),
@@ -50,19 +53,19 @@ class ProductGridWidget extends StatelessWidget {
                           Text('\$${state[index].price}/-'),
                         ],
                       ),
-                        Container(
-            width: 0.5,
-            height: 30,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Colors.transparent,
-                  Colors.black,
-                  Colors.transparent
-                ])),
-          ),
+                      Container(
+                        width: 0.5,
+                        height: 30,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                              Colors.transparent,
+                              Colors.black,
+                              Colors.transparent
+                            ])),
+                      ),
                       Container(
                         height: 20,
                         width: 40,

@@ -36,7 +36,10 @@ class CustomerPage extends HookWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: SearchFieldWidget(
                       isCustomer: true,
-                      onSubmitted: (p0) {},
+                      onChanged: (text) {
+                        context.read<CustomersApiBloc>().add(
+                            SearchCustomersEvent(customersController.text));
+                      },
                       controller: customersController),
                 )
               ],
@@ -57,7 +60,16 @@ class CustomerPage extends HookWidget {
                           child: CircularProgressIndicator(),
                         );
                       } else {
-                        return CustomersListWidget(state: state.customers!);
+                        final searchResults = state.customers!
+                            .where((element) => element.name!
+                                .trim()
+                                .toLowerCase()
+                                .startsWith(customersController.text
+                                    .trim()
+                                    .toLowerCase()))
+                            .toList();
+
+                        return CustomersListWidget(state: searchResults);
                       }
                     },
                   ),
