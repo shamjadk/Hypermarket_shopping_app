@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'customer_model.dart';
+part of 'customers_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
-    _$CustomerModelImpl(
+_$CustomersModelImpl _$$CustomersModelImplFromJson(Map<String, dynamic> json) =>
+    _$CustomersModelImpl(
       id: json['id'] as int,
       name: json['name'] as String?,
       profilePic: json['profilePic'] as String?,
@@ -16,7 +16,8 @@ _$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
       city: json['city'] as String?,
     );
 
-Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
+Map<String, dynamic> _$$CustomersModelImplToJson(
+        _$CustomersModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

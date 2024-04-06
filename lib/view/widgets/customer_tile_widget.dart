@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
-import 'package:hypermarket_ecommerce/model/customer_model.dart';
+import 'package:hypermarket_ecommerce/model/customers_model.dart';
 
 class CustomerTileWidget extends StatelessWidget {
-  final CustomerModel model;
-  const CustomerTileWidget({super.key,required this.model});
+  final CustomersModel model;
+  const CustomerTileWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,10 @@ class CustomerTileWidget extends StatelessWidget {
             width: 80,
             height: 100,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8), color: Colors.red),
+                borderRadius: BorderRadius.circular(8), color: AppTheme.appThemeColor),
+                child: const Center(
+                  child: Icon(Icons.person,size: 60,color: Colors.white,),
+                ),
           ),
           const SizedBox(
             width: 16,
@@ -46,34 +49,38 @@ class CustomerTileWidget extends StatelessWidget {
           const SizedBox(
             width: 16,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Nesto',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-               Text(
-                'ID: ${model.id}',
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-              ),
-               Text(
-                '${model.street}, ${model.city}, ${model.state}',
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-              ),
-              RichText(
-                  text: const TextSpan(
-                      text: 'Due Amount:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                      children: [
-                    TextSpan(
-                        text: ' \$500', style: TextStyle(color: Colors.red))
-                  ]))
-            ],
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width/2.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${model.name}',
+                  style:
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Text(
+                  'ID: ${model.id}',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.grey),
+                ),
+                Text(
+                  '${model.street}, ${model.city}, ${model.state}',overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.grey),
+                ),
+                RichText(
+                    text: const TextSpan(
+                        text: 'Due Amount:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
+                        children: [
+                      TextSpan(
+                          text: ' \$500', style: TextStyle(color: Colors.red))
+                    ]))
+              ],
+            ),
           ),
           Expanded(
             child: Row(

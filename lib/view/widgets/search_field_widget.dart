@@ -1,87 +1,90 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 
 class SearchFieldWidget extends StatelessWidget {
-  final TextEditingController controller;
-  final bool isCustomer;
+  final bool? isCustomer;
+  final TextEditingController? controller;
+  final void Function(String)? onSubmitted;
   const SearchFieldWidget(
-      {super.key, required this.controller, required this.isCustomer});
-
+      {super.key,
+      required this.isCustomer,
+      required this.onSubmitted,
+      required this.controller});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      height: 50,
       child: TextField(
+        onSubmitted: onSubmitted,
         controller: controller,
         decoration: InputDecoration(
             prefixIcon: const Icon(
-              Icons.search,
+              CupertinoIcons.search,
               color: Colors.grey,
             ),
-            labelText: 'Search',
-            labelStyle: const TextStyle(color: Colors.grey),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.grey),
-              borderRadius: BorderRadius.circular(60),
-            ),
-            suffixIcon: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: isCustomer
-                    ? const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.qr_code_2),
-                          SizedBox(
-                            width: 8,
+            suffixIcon: isCustomer == true
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.qr_code_scanner_outlined),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            // showModalBottomSheet(
+                            //   context: context,
+                            //   builder: (context) {
+                            //     return const ShowModelWidget();
+                            //   },
+                            // );
+                          },
+                          child: const CircleAvatar(
+                            radius: 12,
+                            backgroundColor: Color(0xFF17479b),
+                            child: Icon(
+                              Icons.add,
+                              size: 15,
+                              color: Colors.white,
+                            ),
                           ),
-                          SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: IconButton(
-                                style: ButtonStyle(
-                                    padding: MaterialStatePropertyAll(
-                                        EdgeInsets.all(0)),
-                                    backgroundColor: MaterialStatePropertyAll(
-                                        AppTheme.appThemeColor)),
-                                onPressed: null,
-                                icon: Center(
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                )),
-                          )
-                        ],
-                      )
-                    : const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.qr_code_2),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            '|',
-                            style: TextStyle(fontSize: 30),
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            'Fruits',
-                            style: TextStyle(color: Colors.grey, fontSize: 16),
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
+                        ),
+                      ],
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.qr_code_scanner_outlined),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Container(
+                            width: 1,
                             color: Colors.grey,
-                          )
-                        ],
-                      ))),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        const Text('Fruits'),
+                        const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        )
+                      ],
+                    )),
+            hintText: 'Search',
+            hintStyle: const TextStyle(
+                color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(40))),
       ),
     );
   }
