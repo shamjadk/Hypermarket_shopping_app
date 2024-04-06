@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/api_bloc.dart';
 import 'package:hypermarket_ecommerce/controller/navigator_controller.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 import 'package:hypermarket_ecommerce/view/pages/customers_page.dart';
@@ -33,16 +35,6 @@ class SectionsGridWidget extends HookWidget {
       "Today' summary",
       'Route',
     ];
-    final pages = [
-      const CustomersPage(),
-      const ProductPage(),
-      const ProductPage(),
-      const ProductPage(),
-      const ProductPage(),
-      const ProductPage(),
-      const ProductPage(),
-      const ProductPage(),
-    ];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -55,7 +47,13 @@ class SectionsGridWidget extends HookWidget {
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             selectedSectionIndex.value = index;
-            navPush(context, pages[index]);
+            selectedSectionIndex.value == 0
+                ? navPush(
+                    context,
+                    BlocProvider<ApiBloc>(
+                        create: (context) => ApiBloc(),
+                        child: const CustomersPage()))
+                : navPush(context, const ProductPage());
           },
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -77,7 +75,7 @@ class SectionsGridWidget extends HookWidget {
                     size: 35,
                     color: selectedSectionIndex.value == index
                         ? Colors.white
-                        : Colors.black,
+                        : AppTheme.appThemeColor,
                   ),
                   const SizedBox(
                     height: 8,
@@ -89,7 +87,7 @@ class SectionsGridWidget extends HookWidget {
                       fontWeight: FontWeight.bold,
                       color: selectedSectionIndex.value == index
                           ? Colors.white
-                          : AppTheme.appThemeColor,
+                          : Colors.black,
                     ),
                   )
                 ],

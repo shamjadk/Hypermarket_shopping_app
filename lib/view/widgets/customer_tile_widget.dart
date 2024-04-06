@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
+import 'package:hypermarket_ecommerce/model/customer_model.dart';
 
 class CustomerTileWidget extends StatelessWidget {
-  const CustomerTileWidget({super.key});
+  final CustomerModel model;
+  const CustomerTileWidget({super.key,required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +54,15 @@ class CustomerTileWidget extends StatelessWidget {
                 'Nesto',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              const Text(
-                'ID: 12',
+               Text(
+                'ID: ${model.id}',
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                    const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
               ),
-              const Text(
-                'West palazhi, cal, ker',
+               Text(
+                '${model.street}, ${model.city}, ${model.state}',
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                    const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
               ),
               RichText(
                   text: const TextSpan(

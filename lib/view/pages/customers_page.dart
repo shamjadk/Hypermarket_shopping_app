@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/api_bloc.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/api_state.dart';
 import 'package:hypermarket_ecommerce/view/widgets/app_bar_widget.dart';
 import 'package:hypermarket_ecommerce/view/widgets/customers_list_widget.dart';
 import 'package:hypermarket_ecommerce/view/widgets/search_field_widget.dart';
@@ -30,7 +33,18 @@ class CustomersPage extends HookWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const CustomersListWidget()
+                BlocBuilder<ApiBloc, ApiState>(
+                  bloc: ApiBloc(),
+                  builder: (context, state) {
+                    if (state.customers != null) {
+                      return CustomersListWidget(
+                        state: state.customers!,
+                      );
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                )
               ],
             ),
           ),

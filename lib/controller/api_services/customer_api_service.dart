@@ -7,18 +7,24 @@ import 'package:hypermarket_ecommerce/model/customer_model.dart';
 class CustomerApiService {
   final dio = Dio();
 
-  Future<CustomerModel?> getCustomerdata(String postPath) async {
+  Future<List<CustomerModel>> getCustomerData() async {
     try {
-      final response = await dio.get(ApiUtils.baseUrl + postPath);
+      Response response = await dio.get(ApiUtils.baseUrl + ApiUtils.customer);
       if (response.statusCode == 200) {
         log(response.statusCode.toString());
-        return CustomerModel.fromJson(response.data);
+        final data = response.data;
+        final customers = <CustomerModel>[];
+
+        for (var result in data['data']) {
+          customers.add(CustomerModel.fromJson(result));
+        }
+        return customers;
       } else {
         log(response.statusCode.toString());
+        throw Exception("Error");
       }
-    } catch (e) {
-      log(e.toString());
+    } catch (error) {
+      throw Exception("Error:$error");
     }
-    return null;
   }
 }
