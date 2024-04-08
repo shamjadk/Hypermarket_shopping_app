@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/customer_bloc/customer_api_bloc.dart';
+import 'package:hypermarket_ecommerce/view/widgets/bottom_sheet_widget.dart';
 
 class SearchFieldWidget extends StatelessWidget {
   final bool? isCustomer;
@@ -34,12 +37,14 @@ class SearchFieldWidget extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            // showModalBottomSheet(
-                            //   context: context,
-                            //   builder: (context) {
-                            //     return const ShowModelWidget();
-                            //   },
-                            // );
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return BlocProvider<CustomersApiBloc>(
+                                    create: (context) => CustomersApiBloc(),
+                                    child: const BottomSheetWidget());
+                              },
+                            );
                           },
                           child: const CircleAvatar(
                             radius: 12,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:hypermarket_ecommerce/model/customers_model.dart';
 import 'package:hypermarket_ecommerce/utils/api_utils.dart';
@@ -23,17 +25,17 @@ class CustomerApiService {
     }
   }
 
- static Future<List<CustomersModel>> searchCustomers(String searchText) async {
+  static Future<List<CustomersModel>> searchCustomers(String searchText) async {
     try {
       Response response = await dio
           .get(ApiUtils.customersUrl + ApiUtils.searchUrl + searchText);
       if (response.statusCode == 200) {
         final data = response.data;
-        final datas = <CustomersModel>[];
+        final customers = <CustomersModel>[];
         for (var customer in data['data']) {
-          datas.add(CustomersModel.fromJson(customer));
+          customers.add(CustomersModel.fromJson(customer));
         }
-        return datas;
+        return customers;
       } else {
         throw Exception('Error');
       }
@@ -42,4 +44,20 @@ class CustomerApiService {
     }
   }
 
+  static Future<void> addCustomer(CustomersModel model) async {
+    try {
+      final Map<String, dynamic> modelJson = model.toJson();
+      Response response = await dio.post(
+        ApiUtils.customersUrl,
+        data: modelJson,
+      );
+      if (response.statusCode == 200) {
+        log('Success');
+      } else {
+        throw Exception('Error ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error: $error');
+    }
+  }
 }

@@ -20,10 +20,15 @@ CustomersModel _$CustomersModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CustomersModel {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: "mobile_number")
+  String? get mobileNumber => throw _privateConstructorUsedError;
   String? get profilePic => throw _privateConstructorUsedError;
   String? get street => throw _privateConstructorUsedError;
+  @JsonKey(name: "street_two")
+  String? get streetTwo => throw _privateConstructorUsedError;
+  int? get pincode => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
 
@@ -40,10 +45,13 @@ abstract class $CustomersModelCopyWith<$Res> {
       _$CustomersModelCopyWithImpl<$Res, CustomersModel>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? name,
+      @JsonKey(name: "mobile_number") String? mobileNumber,
       String? profilePic,
       String? street,
+      @JsonKey(name: "street_two") String? streetTwo,
+      int? pincode,
       String? state,
       String? city});
 }
@@ -61,21 +69,28 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
+    Object? mobileNumber = freezed,
     Object? profilePic = freezed,
     Object? street = freezed,
+    Object? streetTwo = freezed,
+    Object? pincode = freezed,
     Object? state = freezed,
     Object? city = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       profilePic: freezed == profilePic
           ? _value.profilePic
@@ -85,6 +100,14 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
               as String?,
+      streetTwo: freezed == streetTwo
+          ? _value.streetTwo
+          : streetTwo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pincode: freezed == pincode
+          ? _value.pincode
+          : pincode // ignore: cast_nullable_to_non_nullable
+              as int?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -106,10 +129,13 @@ abstract class _$$CustomersModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? name,
+      @JsonKey(name: "mobile_number") String? mobileNumber,
       String? profilePic,
       String? street,
+      @JsonKey(name: "street_two") String? streetTwo,
+      int? pincode,
       String? state,
       String? city});
 }
@@ -125,21 +151,28 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
+    Object? mobileNumber = freezed,
     Object? profilePic = freezed,
     Object? street = freezed,
+    Object? streetTwo = freezed,
+    Object? pincode = freezed,
     Object? state = freezed,
     Object? city = freezed,
   }) {
     return _then(_$CustomersModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       profilePic: freezed == profilePic
           ? _value.profilePic
@@ -149,6 +182,14 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
               as String?,
+      streetTwo: freezed == streetTwo
+          ? _value.streetTwo
+          : streetTwo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pincode: freezed == pincode
+          ? _value.pincode
+          : pincode // ignore: cast_nullable_to_non_nullable
+              as int?,
       state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -167,8 +208,11 @@ class _$CustomersModelImpl implements _CustomersModel {
   const _$CustomersModelImpl(
       {required this.id,
       required this.name,
+      @JsonKey(name: "mobile_number") required this.mobileNumber,
       required this.profilePic,
       required this.street,
+      @JsonKey(name: "street_two") required this.streetTwo,
+      required this.pincode,
       required this.state,
       required this.city});
 
@@ -176,13 +220,21 @@ class _$CustomersModelImpl implements _CustomersModel {
       _$$CustomersModelImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? name;
+  @override
+  @JsonKey(name: "mobile_number")
+  final String? mobileNumber;
   @override
   final String? profilePic;
   @override
   final String? street;
+  @override
+  @JsonKey(name: "street_two")
+  final String? streetTwo;
+  @override
+  final int? pincode;
   @override
   final String? state;
   @override
@@ -190,7 +242,7 @@ class _$CustomersModelImpl implements _CustomersModel {
 
   @override
   String toString() {
-    return 'CustomersModel(id: $id, name: $name, profilePic: $profilePic, street: $street, state: $state, city: $city)';
+    return 'CustomersModel(id: $id, name: $name, mobileNumber: $mobileNumber, profilePic: $profilePic, street: $street, streetTwo: $streetTwo, pincode: $pincode, state: $state, city: $city)';
   }
 
   @override
@@ -200,17 +252,22 @@ class _$CustomersModelImpl implements _CustomersModel {
             other is _$CustomersModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
             (identical(other.profilePic, profilePic) ||
                 other.profilePic == profilePic) &&
             (identical(other.street, street) || other.street == street) &&
+            (identical(other.streetTwo, streetTwo) ||
+                other.streetTwo == streetTwo) &&
+            (identical(other.pincode, pincode) || other.pincode == pincode) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, profilePic, street, state, city);
+  int get hashCode => Object.hash(runtimeType, id, name, mobileNumber,
+      profilePic, street, streetTwo, pincode, state, city);
 
   @JsonKey(ignore: true)
   @override
@@ -229,10 +286,13 @@ class _$CustomersModelImpl implements _CustomersModel {
 
 abstract class _CustomersModel implements CustomersModel {
   const factory _CustomersModel(
-      {required final int id,
+      {required final int? id,
       required final String? name,
+      @JsonKey(name: "mobile_number") required final String? mobileNumber,
       required final String? profilePic,
       required final String? street,
+      @JsonKey(name: "street_two") required final String? streetTwo,
+      required final int? pincode,
       required final String? state,
       required final String? city}) = _$CustomersModelImpl;
 
@@ -240,13 +300,21 @@ abstract class _CustomersModel implements CustomersModel {
       _$CustomersModelImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get name;
+  @override
+  @JsonKey(name: "mobile_number")
+  String? get mobileNumber;
   @override
   String? get profilePic;
   @override
   String? get street;
+  @override
+  @JsonKey(name: "street_two")
+  String? get streetTwo;
+  @override
+  int? get pincode;
   @override
   String? get state;
   @override
