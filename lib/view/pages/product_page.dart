@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hypermarket_ecommerce/controller/bloc/product_bloc/product_bloc.dart';
-import 'package:hypermarket_ecommerce/controller/bloc/product_bloc/product_bloc_state.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/product_bloc/product_api_bloc.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/product_bloc/product_api_state.dart';
 import 'package:hypermarket_ecommerce/view/widgets/app_bar_widget.dart';
 import 'package:hypermarket_ecommerce/view/widgets/product_grid_widget.dart';
 import 'package:hypermarket_ecommerce/view/widgets/search_field_widget.dart';
@@ -35,7 +35,11 @@ class ProductPage extends HookWidget {
                 child: SearchFieldWidget(
                   controller: productSearchController,
                   isCustomer: false,
-                  onChanged: (p0) {},
+                  onChanged: (text) {
+                    context
+                        .read<ProductApiBloc>()
+                        .add(SearchProductsevent(text));
+                  },
                 ),
               )
             ],
@@ -55,7 +59,15 @@ class ProductPage extends HookWidget {
                         child: CircularProgressIndicator(),
                       );
                     } else {
-                      return ProductGridWidget(state: state.product!);
+                      final searchResults = state.product!
+                          .where((element) => element.name
+                              .trim()
+                              .toLowerCase()
+                              .contains(productSearchController.text
+                                  .trim()
+                                  .toLowerCase()))
+                          .toList();
+                      return ProductGridWidget(state: searchResults);
                     }
                   },
                 ),

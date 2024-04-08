@@ -3,11 +3,11 @@ import 'package:hypermarket_ecommerce/model/customers_model.dart';
 import 'package:hypermarket_ecommerce/utils/api_utils.dart';
 
 class CustomerApiService {
-  final Dio dio = Dio();
+  static final Dio dio = Dio();
 
-  Future<List<CustomersModel>> getCustomerData() async {
+  static Future<List<CustomersModel>> getCustomerData() async {
     try {
-      Response response = await dio.get(ApiUtils.customersBaseUrl);
+      Response response = await dio.get(ApiUtils.customersUrl);
       if (response.statusCode == 200) {
         final data = response.data;
         final customers = <CustomersModel>[];
@@ -22,4 +22,24 @@ class CustomerApiService {
       throw Exception('Error occured: $e');
     }
   }
+
+ static Future<List<CustomersModel>> searchCustomers(String searchText) async {
+    try {
+      Response response = await dio
+          .get(ApiUtils.customersUrl + ApiUtils.searchUrl + searchText);
+      if (response.statusCode == 200) {
+        final data = response.data;
+        final datas = <CustomersModel>[];
+        for (var customer in data['data']) {
+          datas.add(CustomersModel.fromJson(customer));
+        }
+        return datas;
+      } else {
+        throw Exception('Error');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
 }

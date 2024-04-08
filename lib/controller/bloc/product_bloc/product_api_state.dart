@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hypermarket_ecommerce/model/product_model.dart';
 
-part 'product_bloc_state.freezed.dart';
+part 'product_api_state.freezed.dart';
 
 @freezed
 class ProductApiState with _$ProductApiState {

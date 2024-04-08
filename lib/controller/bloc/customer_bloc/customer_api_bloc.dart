@@ -1,16 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hypermarket_ecommerce/controller/bloc/customer_bloc/customer_api_state.dart';
 import 'package:hypermarket_ecommerce/controller/services/customers_api_service.dart';
-import 'package:hypermarket_ecommerce/controller/services/customers_search_service.dart';
 
 sealed class CustomersApiEvent {}
 
 class GetCustomersEvent implements CustomersApiEvent {}
 
 class SearchCustomersEvent implements CustomersApiEvent {
-  final String? serchText;
+  final String? searchText;
 
-  SearchCustomersEvent(this.serchText);
+  SearchCustomersEvent(this.searchText);
 }
 
 class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
@@ -23,7 +22,7 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
     });
     on<SearchCustomersEvent>(
       (event, emit) async {
-        final searchText = event.serchText;
+        final searchText = event.searchText;
         await searchCustomers(emit, searchText!);
       },
     );
@@ -31,7 +30,7 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
 
   Future<void> getCustomers(Emitter<CustomerApiState> emit) async {
     try {
-      final customers = await CustomerApiService().getCustomerData();
+      final customers = await CustomerApiService.getCustomerData();
       emit(state.copyWith(customers: customers));
     } catch (e) {
       emit(state.copyWith(error: e.toString()));
@@ -41,8 +40,7 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
   Future<void> searchCustomers(
       Emitter<CustomerApiState> emit, String name) async {
     try {
-      final searchCustomer =
-          await CustomerSearchApiService().searchCustomers(name);
+      final searchCustomer = await CustomerApiService.searchCustomers(name);
       emit(state.copyWith(customers: searchCustomer));
     } catch (e) {
       emit(state.copyWith(error: e.toString()));
