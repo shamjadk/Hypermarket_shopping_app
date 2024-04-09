@@ -25,6 +25,7 @@ mixin _$CustomersModel {
   @JsonKey(name: "mobile_number")
   String? get mobileNumber => throw _privateConstructorUsedError;
   String? get profilePic => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   String? get street => throw _privateConstructorUsedError;
   @JsonKey(name: "street_two")
   String? get streetTwo => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $CustomersModelCopyWith<$Res> {
       String? name,
       @JsonKey(name: "mobile_number") String? mobileNumber,
       String? profilePic,
+      String? email,
       String? street,
       @JsonKey(name: "street_two") String? streetTwo,
       int? pincode,
@@ -73,6 +75,7 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
     Object? name = freezed,
     Object? mobileNumber = freezed,
     Object? profilePic = freezed,
+    Object? email = freezed,
     Object? street = freezed,
     Object? streetTwo = freezed,
     Object? pincode = freezed,
@@ -95,6 +98,10 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
       profilePic: freezed == profilePic
           ? _value.profilePic
           : profilePic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       street: freezed == street
           ? _value.street
@@ -133,6 +140,7 @@ abstract class _$$CustomersModelImplCopyWith<$Res>
       String? name,
       @JsonKey(name: "mobile_number") String? mobileNumber,
       String? profilePic,
+      String? email,
       String? street,
       @JsonKey(name: "street_two") String? streetTwo,
       int? pincode,
@@ -155,6 +163,7 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? mobileNumber = freezed,
     Object? profilePic = freezed,
+    Object? email = freezed,
     Object? street = freezed,
     Object? streetTwo = freezed,
     Object? pincode = freezed,
@@ -177,6 +186,10 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
       profilePic: freezed == profilePic
           ? _value.profilePic
           : profilePic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
       street: freezed == street
           ? _value.street
@@ -210,6 +223,7 @@ class _$CustomersModelImpl implements _CustomersModel {
       required this.name,
       @JsonKey(name: "mobile_number") required this.mobileNumber,
       required this.profilePic,
+      required this.email,
       required this.street,
       @JsonKey(name: "street_two") required this.streetTwo,
       required this.pincode,
@@ -229,6 +243,8 @@ class _$CustomersModelImpl implements _CustomersModel {
   @override
   final String? profilePic;
   @override
+  final String? email;
+  @override
   final String? street;
   @override
   @JsonKey(name: "street_two")
@@ -242,7 +258,7 @@ class _$CustomersModelImpl implements _CustomersModel {
 
   @override
   String toString() {
-    return 'CustomersModel(id: $id, name: $name, mobileNumber: $mobileNumber, profilePic: $profilePic, street: $street, streetTwo: $streetTwo, pincode: $pincode, state: $state, city: $city)';
+    return 'CustomersModel(id: $id, name: $name, mobileNumber: $mobileNumber, profilePic: $profilePic, email: $email, street: $street, streetTwo: $streetTwo, pincode: $pincode, state: $state, city: $city)';
   }
 
   @override
@@ -256,6 +272,7 @@ class _$CustomersModelImpl implements _CustomersModel {
                 other.mobileNumber == mobileNumber) &&
             (identical(other.profilePic, profilePic) ||
                 other.profilePic == profilePic) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.streetTwo, streetTwo) ||
                 other.streetTwo == streetTwo) &&
@@ -267,7 +284,7 @@ class _$CustomersModelImpl implements _CustomersModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, mobileNumber,
-      profilePic, street, streetTwo, pincode, state, city);
+      profilePic, email, street, streetTwo, pincode, state, city);
 
   @JsonKey(ignore: true)
   @override
@@ -290,6 +307,7 @@ abstract class _CustomersModel implements CustomersModel {
       required final String? name,
       @JsonKey(name: "mobile_number") required final String? mobileNumber,
       required final String? profilePic,
+      required final String? email,
       required final String? street,
       @JsonKey(name: "street_two") required final String? streetTwo,
       required final int? pincode,
@@ -308,6 +326,8 @@ abstract class _CustomersModel implements CustomersModel {
   String? get mobileNumber;
   @override
   String? get profilePic;
+  @override
+  String? get email;
   @override
   String? get street;
   @override

@@ -13,7 +13,6 @@ class ProductGridWidget extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
-        mainAxisExtent: 140,
       ),
       itemCount: state.length,
       itemBuilder: (context, index) {
@@ -46,11 +45,18 @@ class ProductGridWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            state[index].name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 5,
+                            child: Text(
+                              state[index].name,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
                           ),
-                          Text('\$${state[index].price}/-'),
+                          Text(
+                            '\$${state[index].price}/-',
+                            style: const TextStyle(fontSize: 12),
+                          ),
                         ],
                       ),
                       Container(

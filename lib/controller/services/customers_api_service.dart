@@ -48,7 +48,7 @@ class CustomerApiService {
     try {
       final Map<String, dynamic> modelJson = model.toJson();
       Response response = await dio.post(
-        ApiUtils.customersUrl,
+        '${ApiUtils.customersUrl}/',
         data: modelJson,
       );
       if (response.statusCode == 200) {
@@ -56,8 +56,9 @@ class CustomerApiService {
       } else {
         throw Exception('Error ${response.statusCode}');
       }
-    } catch (error) {
-      throw Exception('Error: $error');
+    } catch (e) {
+      log(e.toString());
+      throw Exception('Error: $e');
     }
   }
 }

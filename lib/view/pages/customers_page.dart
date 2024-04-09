@@ -74,7 +74,10 @@ class CustomerPage extends HookWidget {
                       }
                     },
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
               ],
             ),
           ),

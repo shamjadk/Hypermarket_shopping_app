@@ -42,7 +42,12 @@ class SearchFieldWidget extends StatelessWidget {
                               builder: (context) {
                                 return BlocProvider<CustomersApiBloc>(
                                     create: (context) => CustomersApiBloc(),
-                                    child: const BottomSheetWidget());
+                                    child: Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        child: const BottomSheetWidget()));
                               },
                             );
                           },

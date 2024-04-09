@@ -12,6 +12,7 @@ class CustomersModel with _$CustomersModel {
     required String? name,
     @JsonKey(name: "mobile_number") required String? mobileNumber,
     required String? profilePic,
+    required String? email,
     required String? street,
     @JsonKey(name: "street_two") required String? streetTwo,
     required int? pincode,
