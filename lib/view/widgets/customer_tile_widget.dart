@@ -85,7 +85,8 @@ class CustomerTileWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 60,
+              height: 70,
+              width: 70,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: AppTheme.appThemeColor),
@@ -117,7 +118,7 @@ class CustomerTileWidget extends StatelessWidget {
               width: 16,
             ),
             SizedBox(
-              width: MediaQuery.sizeOf(context).width / 2.5,
+              width: MediaQuery.sizeOf(context).width / 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
