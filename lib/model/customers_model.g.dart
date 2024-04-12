@@ -18,6 +18,7 @@ _$CustomersModelImpl _$$CustomersModelImplFromJson(Map<String, dynamic> json) =>
       pincode: json['pincode'] as int?,
       state: json['state'] as String?,
       city: json['city'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$$CustomersModelImplToJson(
@@ -33,4 +34,5 @@ Map<String, dynamic> _$$CustomersModelImplToJson(
       'pincode': instance.pincode,
       'state': instance.state,
       'city': instance.city,
+      'country': instance.country,
     };

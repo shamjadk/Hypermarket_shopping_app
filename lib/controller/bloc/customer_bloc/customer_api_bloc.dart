@@ -22,8 +22,7 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
     );
     on<AddCustomerEvent>(
       (event, emit) async {
-        final model = event.model;
-        await addCustomers(emit, model!);
+        await addCustomers(emit, event.model!);
         await getCustomers(emit);
       },
     );

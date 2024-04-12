@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hypermarket_ecommerce/controller/bloc/customer_bloc/customer_api_bloc.dart';
 import 'package:hypermarket_ecommerce/controller/bloc/customer_bloc/customer_events.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
+import 'package:hypermarket_ecommerce/core/utils/snack_bar_utils.dart';
 import 'package:hypermarket_ecommerce/model/customers_model.dart';
 import 'package:hypermarket_ecommerce/view/widgets/bottom_sheet_text_filed_widget.dart';
 
@@ -151,23 +152,34 @@ class BottomSheetWidget extends HookWidget {
                               MaterialStatePropertyAll(Colors.white)),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.read<CustomersApiBloc>().add(AddCustomerEvent(
-                              CustomersModel(
-                                  id: 10,
-                                  name: customerNameController.text,
-                                  mobileNumber: mobileNumberController.text,
-                                  email: emailController.text,
-                                  profilePic: null,
-                                  street: streetController.text,
-                                  streetTwo: streetTwoController.text,
-                                  pincode: int.parse(pinCodeController.text),
-                                  state: stateController.text,
-                                  city: cityController.text)));
+                          context.read<CustomersApiBloc>().add(
+                                AddCustomerEvent(
+                                  CustomersModel(
+                                      id: null,
+                                      name: customerNameController.text,
+                                      mobileNumber: mobileNumberController.text,
+                                      email: emailController.text,
+                                      profilePic: null,
+                                      street: streetController.text,
+                                      streetTwo: streetTwoController.text,
+                                      pincode:
+                                          int.parse(pinCodeController.text),
+                                      state: stateController.text,
+                                      city: cityController.text,
+                                      country: countryController.text),
+                                ),
+                              );
+                          Navigator.pop(context);
+                          SnackBarUtils.showSnackBar(
+                              context, 'Successfully added new customer');
                         } else {
                           log('Empty input');
                         }
                       },
                       child: const Text('Submit')),
+                ),
+                const SizedBox(
+                  height: 16,
                 )
               ],
             ),

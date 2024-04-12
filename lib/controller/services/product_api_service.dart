@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hypermarket_ecommerce/model/product_model.dart';
-import 'package:hypermarket_ecommerce/utils/api_utils.dart';
+import 'package:hypermarket_ecommerce/core/utils/api_utils.dart';
 
 class ProductApiService {
  static final Dio dio = Dio();

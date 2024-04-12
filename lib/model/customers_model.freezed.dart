@@ -32,6 +32,7 @@ mixin _$CustomersModel {
   int? get pincode => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +56,8 @@ abstract class $CustomersModelCopyWith<$Res> {
       @JsonKey(name: "street_two") String? streetTwo,
       int? pincode,
       String? state,
-      String? city});
+      String? city,
+      String? country});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
     Object? pincode = freezed,
     Object? state = freezed,
     Object? city = freezed,
+    Object? country = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -123,6 +126,10 @@ class _$CustomersModelCopyWithImpl<$Res, $Val extends CustomersModel>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -145,7 +152,8 @@ abstract class _$$CustomersModelImplCopyWith<$Res>
       @JsonKey(name: "street_two") String? streetTwo,
       int? pincode,
       String? state,
-      String? city});
+      String? city,
+      String? country});
 }
 
 /// @nodoc
@@ -169,6 +177,7 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
     Object? pincode = freezed,
     Object? state = freezed,
     Object? city = freezed,
+    Object? country = freezed,
   }) {
     return _then(_$CustomersModelImpl(
       id: freezed == id
@@ -211,6 +220,10 @@ class __$$CustomersModelImplCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -228,7 +241,8 @@ class _$CustomersModelImpl implements _CustomersModel {
       @JsonKey(name: "street_two") required this.streetTwo,
       required this.pincode,
       required this.state,
-      required this.city});
+      required this.city,
+      required this.country});
 
   factory _$CustomersModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CustomersModelImplFromJson(json);
@@ -255,10 +269,12 @@ class _$CustomersModelImpl implements _CustomersModel {
   final String? state;
   @override
   final String? city;
+  @override
+  final String? country;
 
   @override
   String toString() {
-    return 'CustomersModel(id: $id, name: $name, mobileNumber: $mobileNumber, profilePic: $profilePic, email: $email, street: $street, streetTwo: $streetTwo, pincode: $pincode, state: $state, city: $city)';
+    return 'CustomersModel(id: $id, name: $name, mobileNumber: $mobileNumber, profilePic: $profilePic, email: $email, street: $street, streetTwo: $streetTwo, pincode: $pincode, state: $state, city: $city, country: $country)';
   }
 
   @override
@@ -278,13 +294,14 @@ class _$CustomersModelImpl implements _CustomersModel {
                 other.streetTwo == streetTwo) &&
             (identical(other.pincode, pincode) || other.pincode == pincode) &&
             (identical(other.state, state) || other.state == state) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, mobileNumber,
-      profilePic, email, street, streetTwo, pincode, state, city);
+      profilePic, email, street, streetTwo, pincode, state, city, country);
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +329,8 @@ abstract class _CustomersModel implements CustomersModel {
       @JsonKey(name: "street_two") required final String? streetTwo,
       required final int? pincode,
       required final String? state,
-      required final String? city}) = _$CustomersModelImpl;
+      required final String? city,
+      required final String? country}) = _$CustomersModelImpl;
 
   factory _CustomersModel.fromJson(Map<String, dynamic> json) =
       _$CustomersModelImpl.fromJson;
@@ -339,6 +357,8 @@ abstract class _CustomersModel implements CustomersModel {
   String? get state;
   @override
   String? get city;
+  @override
+  String? get country;
   @override
   @JsonKey(ignore: true)
   _$$CustomersModelImplCopyWith<_$CustomersModelImpl> get copyWith =>

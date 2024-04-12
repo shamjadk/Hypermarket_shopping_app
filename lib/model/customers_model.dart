@@ -18,6 +18,7 @@ class CustomersModel with _$CustomersModel {
     required int? pincode,
     required String? state,
     required String? city,
+    required String? country,
   }) = _CustomersModel;
 
   factory CustomersModel.fromJson(Map<String, dynamic> json) =>

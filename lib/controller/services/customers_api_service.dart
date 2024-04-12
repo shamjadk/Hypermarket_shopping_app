@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hypermarket_ecommerce/model/customers_model.dart';
-import 'package:hypermarket_ecommerce/utils/api_utils.dart';
+import 'package:hypermarket_ecommerce/core/utils/api_utils.dart';
 
 class CustomerApiService {
   static final Dio dio = Dio();
@@ -46,10 +46,20 @@ class CustomerApiService {
 
   static Future<void> addCustomer(CustomersModel model) async {
     try {
-      final Map<String, dynamic> modelJson = model.toJson();
       Response response = await dio.post(
         '${ApiUtils.customersUrl}/',
-        data: modelJson,
+        data: {
+          "name": model.name,
+          "profile_pic": null,
+          "mobile_number": model.mobileNumber,
+          "email": model.email,
+          "street": model.street,
+          "street_two": model.streetTwo,
+          "city": model.city,
+          "pincode": model.pincode,
+          "country": model.country,
+          "state": model.state,
+        },
       );
       if (response.statusCode == 200) {
         log('Success');
