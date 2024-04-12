@@ -6,6 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
   const MyApp({super.key});
 
   @override

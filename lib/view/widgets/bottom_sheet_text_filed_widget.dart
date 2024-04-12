@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 
 class BottomSheettextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -14,9 +15,10 @@ class BottomSheettextFieldWidget extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: TextFormField(
+        cursorColor: AppTheme.appThemeColor,
         validator: (value) {
           if (value!.isEmpty) {
-            return 'Required';
+            return 'This field is Required';
           }
           return null;
         },

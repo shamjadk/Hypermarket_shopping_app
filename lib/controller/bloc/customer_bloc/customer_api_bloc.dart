@@ -26,6 +26,12 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
         await getCustomers(emit);
       },
     );
+    on<UpdateCustomerEvent>(
+      (event, emit) async {
+        await updateCustomers(emit, event.model!, event.id!);
+        await getCustomers(emit);
+      },
+    );
   }
 
   Future<void> getCustomers(Emitter<CustomerApiState> emit) async {
@@ -49,9 +55,21 @@ class CustomersApiBloc extends Bloc<CustomersApiEvent, CustomerApiState> {
   }
 
   Future<void> addCustomers(
-      Emitter<CustomerApiState> emit, CustomersModel model) async {
+    Emitter<CustomerApiState> emit,
+    CustomersModel model,
+  ) async {
     try {
       await CustomerApiService.addCustomer(model);
+    } catch (e) {
+      log('$e');
+      emit(state.copyWith(error: e.toString()));
+    }
+  }
+
+  Future<void> updateCustomers(
+      Emitter<CustomerApiState> emit, CustomersModel model, int id) async {
+    try {
+      await CustomerApiService.updateCustomer(model, id);
     } catch (e) {
       log('$e');
       emit(state.copyWith(error: e.toString()));

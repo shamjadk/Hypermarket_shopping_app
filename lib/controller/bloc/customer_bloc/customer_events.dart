@@ -15,3 +15,10 @@ class AddCustomerEvent implements CustomersApiEvent {
 
   AddCustomerEvent(this.model);
 }
+
+class UpdateCustomerEvent implements CustomersApiEvent {
+  final CustomersModel? model;
+  final int? id;
+
+  UpdateCustomerEvent({required this.model, required this.id});
+}

@@ -33,7 +33,8 @@ class SearchFieldWidget extends StatelessWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(40),
-              borderSide: const BorderSide(color: AppTheme.appThemeColor, width: 2)),
+              borderSide:
+                  const BorderSide(color: AppTheme.appThemeColor, width: 2)),
           suffixIcon: isCustomer == true
               ? Padding(
                   padding: const EdgeInsets.only(right: 12),
@@ -56,7 +57,10 @@ class SearchFieldWidget extends StatelessWidget {
                                           bottom: MediaQuery.of(context)
                                               .viewInsets
                                               .bottom),
-                                      child: const BottomSheetWidget()));
+                                      child: const BottomSheetWidget(
+                                        null,
+                                        isEdit: false,
+                                      )));
                             },
                           );
                         },

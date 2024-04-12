@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hypermarket_ecommerce/controller/bloc/customer_bloc/customer_api_bloc.dart';
 import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 import 'package:hypermarket_ecommerce/model/customers_model.dart';
+import 'package:hypermarket_ecommerce/view/widgets/bottom_sheet_widget.dart';
+import 'package:hypermarket_ecommerce/view/widgets/elevtaed_button_widget.dart';
 
-class CustomerTileWidget extends StatelessWidget {
+class CustomerTileWidget extends HookWidget {
   final CustomersModel model;
   const CustomerTileWidget({super.key, required this.model});
 
@@ -68,6 +73,20 @@ class CustomerTileWidget extends StatelessWidget {
                 fieldKey: 'State',
                 fieldValue: model.state!,
               ),
+              ElevatedButtonWidget(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => BlocProvider<CustomersApiBloc>(
+                        create: (context) => CustomersApiBloc(),
+                        child: BottomSheetWidget(
+                          model,
+                          isEdit: true,
+                        ),
+                      ),
+                    );
+                  },
+                  buttonName: 'Edit')
             ],
           ),
         ),

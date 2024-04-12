@@ -47,7 +47,7 @@ class CustomerApiService {
   static Future<void> addCustomer(CustomersModel model) async {
     try {
       Response response = await dio.post(
-        '${ApiUtils.customersUrl}/',
+        ApiUtils.postRequestUrl,
         data: {
           "name": model.name,
           "profile_pic": null,
@@ -68,7 +68,33 @@ class CustomerApiService {
       }
     } catch (e) {
       log(e.toString());
-      throw Exception('Error: $e');
+    }
+  }
+
+  static Future<void> updateCustomer(CustomersModel model,int id) async {
+    try {
+      Response response = await dio.put(
+        '${ApiUtils.putRequestUrl}$id',
+        data: {
+          "name": model.name,
+          "profile_pic": null,
+          "mobile_number": model.mobileNumber,
+          "email": model.email,
+          "street": model.street,
+          "street_two": model.streetTwo,
+          "city": model.city,
+          "pincode": model.pincode,
+          "country": model.country,
+          "state": model.state,
+        },
+      );
+      if (response.statusCode == 200) {
+        log('Success');
+      } else {
+        throw Exception('Error ${response.statusCode}');
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

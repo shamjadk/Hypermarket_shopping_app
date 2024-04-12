@@ -9,9 +9,12 @@ import 'package:hypermarket_ecommerce/core/theme/theme.dart';
 import 'package:hypermarket_ecommerce/core/utils/snack_bar_utils.dart';
 import 'package:hypermarket_ecommerce/model/customers_model.dart';
 import 'package:hypermarket_ecommerce/view/widgets/bottom_sheet_text_filed_widget.dart';
+import 'package:hypermarket_ecommerce/view/widgets/elevtaed_button_widget.dart';
 
 class BottomSheetWidget extends HookWidget {
-  const BottomSheetWidget({super.key});
+  final bool isEdit;
+  final CustomersModel? model;
+  const BottomSheetWidget(this.model, {super.key, required this.isEdit});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,22 @@ class BottomSheetWidget extends HookWidget {
     final pinCodeController = useTextEditingController();
     final countryController = useTextEditingController();
     final stateController = useTextEditingController();
+
+    if (isEdit) {
+      useEffect(() {
+        customerNameController.text = model!.name!;
+        mobileNumberController.text = model!.mobileNumber!;
+        emailController.text = model!.email!;
+        streetController.text = model!.street!;
+        streetTwoController.text = model!.streetTwo!;
+        cityController.text = model!.city!;
+        pinCodeController.text = model!.pincode!.toString();
+        countryController.text = model!.country!;
+        stateController.text = model!.state!;
+        return null;
+      }, []);
+    }
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Container(
@@ -143,41 +162,65 @@ class BottomSheetWidget extends HookWidget {
                   height: 8,
                 ),
                 Align(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(AppTheme.appThemeColor),
-                          foregroundColor:
-                              MaterialStatePropertyAll(Colors.white)),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<CustomersApiBloc>().add(
-                                AddCustomerEvent(
-                                  CustomersModel(
-                                      id: null,
-                                      name: customerNameController.text,
-                                      mobileNumber: mobileNumberController.text,
-                                      email: emailController.text,
-                                      profilePic: null,
-                                      street: streetController.text,
-                                      streetTwo: streetTwoController.text,
-                                      pincode:
-                                          int.parse(pinCodeController.text),
-                                      state: stateController.text,
-                                      city: cityController.text,
-                                      country: countryController.text),
-                                ),
-                              );
-                          Navigator.pop(context);
-                          SnackBarUtils.showSnackBar(
-                              context, 'Successfully added new customer');
-                        } else {
-                          log('Empty input');
-                        }
-                      },
-                      child: const Text('Submit')),
-                ),
+                    alignment: Alignment.center,
+                    child: ElevatedButtonWidget(
+                        onPressed: () {
+                          if (isEdit) {
+                            if (formKey.currentState!.validate()) {
+                              context.read<CustomersApiBloc>().add(
+                                    UpdateCustomerEvent(
+                                        model: CustomersModel(
+                                            id: null,
+                                            name: customerNameController.text,
+                                            mobileNumber:
+                                                mobileNumberController.text,
+                                            email: emailController.text,
+                                            profilePic: null,
+                                            street: streetController.text,
+                                            streetTwo: streetTwoController.text,
+                                            pincode: int.parse(
+                                                pinCodeController.text),
+                                            state: stateController.text,
+                                            city: cityController.text,
+                                            country: countryController.text),
+                                        id: model!.id!),
+                                  );
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              SnackBarUtils.showSnackBar(
+                                  context, 'Updated customer');
+                            } else {
+                              log('Empty input');
+                            }
+                          } else {
+                            if (formKey.currentState!.validate()) {
+                              context.read<CustomersApiBloc>().add(
+                                    AddCustomerEvent(
+                                      CustomersModel(
+                                          id: null,
+                                          name: customerNameController.text,
+                                          mobileNumber:
+                                              mobileNumberController.text,
+                                          email: emailController.text,
+                                          profilePic: null,
+                                          street: streetController.text,
+                                          streetTwo: streetTwoController.text,
+                                          pincode:
+                                              int.parse(pinCodeController.text),
+                                          state: stateController.text,
+                                          city: cityController.text,
+                                          country: countryController.text),
+                                    ),
+                                  );
+                              Navigator.pop(context);
+                              SnackBarUtils.showSnackBar(
+                                  context, 'Added customer');
+                            } else {
+                              log('Empty input');
+                            }
+                          }
+                        },
+                        buttonName: 'Submit')),
                 const SizedBox(
                   height: 16,
                 )
